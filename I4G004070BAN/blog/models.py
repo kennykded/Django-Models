@@ -1,17 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 # Create your models here.
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(get_user_model(), on_delete = models.PROTECT)
     created_date = models.DateTimeField()
     published_date = models.DateTimeField()
 
-#create migrations
-python manage.py makemigrations
-
-#run migrations
-python manage.py migrate
 
